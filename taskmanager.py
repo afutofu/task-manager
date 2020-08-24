@@ -1036,7 +1036,7 @@ class LearntList:
         main_frame.config(bg="#333")
         main_frame.grid(row=0)
 
-        self.main_frame = Frame(main_frame, bg="#333");
+        self.main_frame = Frame(main_frame, bg="#333")
         self.main_frame.grid(row=0, padx=30, pady=15)
 
         top_frame = Frame(self.main_frame, bg="#333")
