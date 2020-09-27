@@ -1,8 +1,8 @@
 import sqlite3 as s3
-
 '''
 This class is used for database testing
 '''
+
 
 class Database:
     def __init__(self, database):
@@ -11,17 +11,31 @@ class Database:
 
         try:
             # To Do List
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS dailiesList(taskId INT, taskName VARCHAR(40));")
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS goalsList(taskId INT, taskName VARCHAR(50), deadline VARCHAR(40));")
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS taskInfo(listId INT, taskName VARCHAR(50) taskInfo VARCHAR(200));")
+            self.cursor.execute(
+                "CREATE TABLE IF NOT EXISTS dailiesList(taskId INT, taskName VARCHAR(40));"
+            )
+            self.cursor.execute(
+                "CREATE TABLE IF NOT EXISTS goalsList(taskId INT, taskName VARCHAR(50), deadline VARCHAR(40));"
+            )
+            self.cursor.execute(
+                "CREATE TABLE IF NOT EXISTS taskInfo(listId INT, taskName VARCHAR(50) taskInfo VARCHAR(200));"
+            )
 
             # Day Planner
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS activityList(hourIndex INT, minIndex INT, taskName VARCHAR(20));")
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS activityInfo(hourIndex INT, minIndex INT, taskInfo VARCHAR(200));")
+            self.cursor.execute(
+                "CREATE TABLE IF NOT EXISTS activityList(hourIndex INT, minIndex INT, taskName VARCHAR(20));"
+            )
+            self.cursor.execute(
+                "CREATE TABLE IF NOT EXISTS activityInfo(hourIndex INT, minIndex INT, taskInfo VARCHAR(200));"
+            )
 
             # Task Timer
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS taskList(taskId INT PRIMARY KEY, taskName VARCHAR(20));")
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS log(taskId INT, logId INT, time INT, logDate TEXT);")
+            self.cursor.execute(
+                "CREATE TABLE IF NOT EXISTS taskList(taskId INT PRIMARY KEY, taskName VARCHAR(20));"
+            )
+            self.cursor.execute(
+                "CREATE TABLE IF NOT EXISTS log(taskId INT, logId INT, time INT, logDate TEXT);"
+            )
 
             self.connection.commit()
             print("Connection Successful")
@@ -62,13 +76,15 @@ class Database:
     def select(self, table, columns, conditions=""):
         query = ""
         if conditions != "":
-        	query = "SELECT %s FROM %s WHERE %s;" % (columns, table, conditions)
+            query = "SELECT %s FROM %s WHERE %s;" % (columns, table,
+                                                     conditions)
         else:
-        	query = "SELECT %s FROM %s;" % (columns, table)
+            query = "SELECT %s FROM %s;" % (columns, table)
         self.execute(query, "select")
 
     def insert(self, table, columns, arguments):
-        query = "INSERT INTO %s (%s) VALUES (%s);" % (table, columns, arguments)
+        query = "INSERT INTO %s (%s) VALUES (%s);" % (table, columns,
+                                                      arguments)
         self.execute(query, "insert")
 
     def update(self, table, change, conditions=""):
@@ -90,8 +106,9 @@ class Database:
     def __del__(self):
         self.connection.close()
 
+
 if __name__ == "__main__":
-    db = Database('C:\\Users\\Afuza\\Documents\\Database\\taskmanager.db')
+    db = Database('./taskmanager.db')
     db.select('taskInfo', '*')
     res = db.fetchall()
     print(res)
