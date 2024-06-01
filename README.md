@@ -2,6 +2,8 @@
 
 Desktop tool to manage activities and deadlines
 
+![image](https://github.com/afutofu/task-manager/assets/37662909/28470167-87b5-4f91-9fa9-fee45f790d2e)
+
 Technologies used:
 
 - [Python](https://www.python.org/)
